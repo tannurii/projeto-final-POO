@@ -2,22 +2,58 @@
 
 ## Sobre o Projeto
 
-O Sistema de Gestão de Zoológico é uma aplicação desenvolvida em Python utilizando os princípios de Programação Orientada a Objetos (POO). O objetivo do projeto é simular o gerenciamento operacional de um zoológico, permitindo o controle de animais, recintos, funcionários e rotinas diárias por meio de um sistema de cronograma.
+O Sistema de Gestão de Zoológico é uma aplicação desenvolvida em Python com foco na aplicação prática dos conceitos de Programação Orientada a Objetos (POO). O projeto tem como objetivo simular o gerenciamento operacional de um zoológico, permitindo o controle de espécies, animais, recintos, funcionários e rotinas diárias por meio de um sistema de cronograma.
 
-O projeto foi estruturado com foco em modularidade, escalabilidade e organização do código, adotando conceitos como encapsulamento, composição e separação de responsabilidades entre classes.
+O desenvolvimento segue princípios de modularidade, organização e escalabilidade, buscando aproximar a estrutura do sistema de soluções utilizadas em ambientes profissionais.
+
+---
 
 ## Estrutura Atual
 
-O sistema possui uma arquitetura baseada nas seguintes entidades:
+Atualmente, o sistema é composto pelos seguintes módulos:
 
-- TipoTarefa: enum responsável pela padronização das tarefas disponíveis.
-- Tarefa: representa uma atividade agendada para execução.
-- Cronograma: gerencia o armazenamento, consulta e persistência das tarefas.
-- Tratador: responsável pela execução das atividades relacionadas aos animais e recintos.
+### TipoTarefa
+
+Enum responsável por padronizar os tipos de tarefas disponíveis no sistema.
+
+### Tarefa
+
+Representa uma atividade agendada para execução em um horário específico.
+
+### Cronograma
+
+Gerencia o armazenamento, consulta e persistência das tarefas cadastradas no sistema.
+
+### Tratador
+
+Responsável pela execução das atividades relacionadas aos animais e recintos do zoológico.
+
+### Especie
+
+Responsável pelo cadastro e gerenciamento das espécies catalogadas. Cada espécie possui um identificador único (UUID), permitindo sua associação futura com os animais cadastrados.
+
+---
+
+## Sistema de Espécies
+
+O módulo de espécies foi criado para separar as características de uma espécie dos dados individuais de cada animal.
+
+Cada espécie cadastrada armazena as seguintes informações:
+
+- Identificador único (UUID);
+- Nome da espécie;
+- Tipo de tratamento necessário;
+- Necessidade de banho de sol.
+
+As espécies podem ser consultadas tanto pelo nome quanto pelo identificador único, reduzindo duplicidade de informações e facilitando a modelagem dos animais.
+
+As informações são persistidas em arquivos JSON para armazenamento permanente.
+
+---
 
 ## Sistema de Cronograma
 
-O módulo de cronograma permite registrar atividades em horários específicos, garantindo que não existam conflitos de agenda. As informações são persistidas em arquivos JSON, possibilitando o armazenamento permanente dos dados cadastrados.
+O módulo de cronograma permite registrar atividades em horários específicos, garantindo que não ocorram conflitos de agenda.
 
 Cada tarefa contém:
 
@@ -33,24 +69,8 @@ Os tipos de tarefa atualmente suportados são:
 - Limpar recinto;
 - Realizar banho de sol.
 
-## Tecnologias Utilizadas
+---
 
-- Python 3
-- Programação Orientada a Objetos (POO)
-- Enum
-- JSON para persistência de dados
+## Persistência de Dados
 
-## Próximas Implementações
-
-As próximas etapas previstas para o desenvolvimento do projeto incluem:
-
-- Implementação da classe Animal;
-- Implementação da classe Recinto;
-- Implementação de um sistema de controle de tempo;
-- Automatização da execução das tarefas agendadas;
-- Controle de saúde e alimentação dos animais;
-- Geração de relatórios gerenciais.
-
-## Objetivos de Aprendizado
-
-Este projeto tem como finalidade aplicar conceitos de Programação Orientada a Objetos em um cenário prático, explorando modelagem de sistemas, persistência de dados, organização de código e boas práticas de desenvolvimento em Python.
+O sistema utiliza arquivos JSON para armazenamento das informa
