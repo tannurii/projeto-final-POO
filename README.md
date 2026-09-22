@@ -30,9 +30,46 @@ Responsável pela execução das atividades relacionadas aos animais e recintos 
 
 ### Especie
 
-Responsável pelo cadastro e gerenciamento das espécies catalogadas. Cada espécie possui um identificador único (UUID), permitindo sua associação futura com os animais cadastrados.
+Cada espécie cadastrada armazena as seguintes informações:
 
----
+- Identificador único (UUID);
+- Nome da espécie;
+- Tipo de tratamento necessário;
+- Tipo de alimentação;
+- Necessidade de banho de sol.
+
+### Animal
+
+Responsável pelo cadastro e gerenciamento dos animais do zoológico.
+
+Cada animal é associado a uma espécie previamente cadastrada através de um identificador único (UUID), evitando duplicação de informações e permitindo consultas centralizadas ao banco de espécies.
+
+As informações armazenadas para cada animal incluem:
+
+- Identificador único (UUID);
+- Espécie associada;
+- Apelido (opcional);
+- Idade;
+- Sexo;
+- Estado de saciedade.
+
+## Sistema de Animais
+
+O sistema de animais foi estruturado utilizando herança para representar diferentes grupos zoológicos.
+
+A classe base `Animal` concentra toda a lógica de cadastro, associação com espécies e persistência dos dados.
+
+A partir dela foram criadas as seguintes subclasses:
+
+```text
+Animal
+│
+├── Mamiferos
+├── Aves
+├── Repteis
+├── Peixes
+└── Anfibios
+## O sistema realiza automaticamente o cadastro de uma nova espécie caso ela não esteja presente no banco de dados durante o processo de registro de um animal.
 
 ## Sistema de Espécies
 
@@ -73,4 +110,14 @@ Os tipos de tarefa atualmente suportados são:
 
 ## Persistência de Dados
 
-O sistema utiliza arquivos JSON para armazenamento das informa
+Arquivos atualmente utilizados:
+
+- `cronograma.json`
+- `especies.json`
+- `mamiferos.json`
+- `aves.json`
+- `repteis.json`
+- `peixes.json`
+- `anfibios.json`
+
+```
