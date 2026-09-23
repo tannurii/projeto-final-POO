@@ -4,15 +4,32 @@ from especies import Especie
 
 class Animal():
     arquivo = None
-    if not arquivo:
-      raise ValueError("Classe Animal não pode ser utilizada diretamente.")
-          
+        
+    @staticmethod
+    def buscar_animal_por_id(id_animal):
+
+        classes_animais = [
+            Mamiferos(),
+            Aves(),
+            Repteis(),
+            Peixes(),
+            Anfibios()
+        ]
+
+        for classe in classes_animais:
+
+            animal = classe.buscar_animal(id_animal)
+
+            if animal:
+                return animal, classe
+
+        return None, None
 
     
     def cadastrar_animal(self, idade, sexo, nome_especie, apelido=None):
         lista_de_animais = carregar(self.arquivo) or []
         especie_service = Especie()
-        especie = especie_service.verificar_especie(nome=nome_especie)
+        especie = especie_service.buscar_especie(nome=nome_especie)
         
         if especie:
             print("Espécie já cadastrada! Buscando no banco de dados...")
@@ -24,11 +41,13 @@ class Animal():
                 "apelido": apelido,
                 "idade": idade,
                 "sexo": sexo,
-                "saciado": False
+                "saciado": False,
+                "tratado": False,
+                "banho_de_sol_tomado": None if especie["banho_de_sol"] == None else False
             }
 
             lista_de_animais.append(novo_animal)
-            salvar(dado=lista_de_animais, local=self.arquivo, identacao=7)
+            salvar(dado=lista_de_animais, local=self.arquivo, identacao=8)
 
         else:
             print(f"Espécie não encontrada. Vamos realizar o cadastro...")
@@ -38,6 +57,26 @@ class Animal():
             especie_service.cadastrar_especie(nome=nome_especie, tratamento=tratamento, alimentacao=alimentacao, banho_de_sol=banho_de_sol)
             self.cadastrar_animal(idade=idade, sexo=sexo, nome_especie=nome_especie, apelido=apelido)
            
+    def buscar_animal(self, id_animal):
+        lista_de_animais = carregar(local=self.arquivo) or []
+        for animal in lista_de_animais:
+            if animal["id"] == id_animal:
+                return animal
+
+        return None
+
+    def atualizar_animal(self, animal_atualizado):
+
+        lista_de_animais = carregar(local=self.arquivo) or []
+
+        for indice, animal in enumerate(lista_de_animais):
+
+            if animal["id"] == animal_atualizado["id"]:
+                lista_de_animais[indice] = animal_atualizado
+                salvar(dado=lista_de_animais, local=self.arquivo, identacao=7)
+                return True
+
+        return False
 
 class Anfibios(Animal):
     arquivo = "Data/classes_animais/anfibios.json"
