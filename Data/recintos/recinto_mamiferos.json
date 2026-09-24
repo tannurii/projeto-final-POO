@@ -1,0 +1,11 @@
+[
+          {
+                    "id": "43f0be67-9561-4bde-a9f7-801a551d6c6d",
+                    "capacidade": 5,
+                    "lotacao": 1,
+                    "limpeza": false,
+                    "id_animais": [
+                              "dd86e75b-e488-40ba-a6d2-6e64a37defb7"
+                    ]
+          }
+]

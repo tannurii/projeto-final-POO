@@ -1,6 +1,6 @@
 import uuid
 from Data.json_storage import carregar, salvar
-from especies import Especie
+from Models.especies import Especie
 
 class Animal():
     arquivo = None
@@ -32,7 +32,7 @@ class Animal():
         especie = especie_service.buscar_especie(nome=nome_especie)
         
         if especie:
-            print("Espécie já cadastrada! Buscando no banco de dados...")
+            print("Espécie5 cadastrada! Buscando no banco de dados...")
 
             novo_animal = {
                 "id": str(uuid.uuid4()),
@@ -48,6 +48,7 @@ class Animal():
 
             lista_de_animais.append(novo_animal)
             salvar(dado=lista_de_animais, local=self.arquivo, identacao=8)
+            print(f"Animal cadastrado com sucesso! Segue id: {novo_animal["id"]}")
 
         else:
             print(f"Espécie não encontrada. Vamos realizar o cadastro...")
@@ -79,15 +80,15 @@ class Animal():
         return False
 
 class Anfibios(Animal):
-    arquivo = "Data/classes_animais/anfibios.json"
+    arquivo = "Data/animais/anfibios.json"
 class Aves(Animal):
-    arquivo = "Data/classes_animais/aves.json"
+    arquivo = "Data/animais/aves.json"
 class Mamiferos(Animal):
-    arquivo = "Data/classes_animais/mamiferos.json"
+    arquivo = "Data/animais/mamiferos.json"
 class Peixes(Animal):
-    arquivo = "Data/classes_animais/peixes.json"
+    arquivo = "Data/recintos/recinto_peixes.json"
 class Repteis(Animal):
-    arquivo = "Data/classes_animais/repteis.json"
+    arquivo = "Data/recintos/recinto_repteis.json"
     
             
 

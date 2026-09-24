@@ -1,0 +1,16 @@
+[
+     {
+          "id": "3ece3f31-d8fe-4866-a616-8db0f5949676",
+          "nome": "le\u00e3o",
+          "tratamento": "qualquer",
+          "alimentacao": "carnivoro",
+          "banho_de_sol": "s"
+     },
+     {
+          "id": "db816f15-f9d6-4d68-b286-b4d2f394c79f",
+          "nome": "macaco",
+          "tratamento": "acompanhamento veterin\u00e1rio e monitoramento comportamental",
+          "alimentacao": "carn\u00edvoro",
+          "banho_de_sol": true
+     }
+]

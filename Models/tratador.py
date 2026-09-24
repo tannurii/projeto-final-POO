@@ -1,14 +1,13 @@
-#Importacoes
-from cronograma import Cronograma
-from tarefa import TipoTarefa
-from animal import *
-from recinto import *
-from especies import *
+from Models.cronograma import Cronograma
+from Models.tarefa import TipoTarefa
+from Models.animal import *
+from Models.recinto import *
+from Models.especies import *
+
 
 
 class Tratador():
   def __init__(self, nome):
-    self.nome = nome
     self.cronograma = Cronograma()
 
 

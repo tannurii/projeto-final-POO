@@ -1,0 +1,24 @@
+[
+        {
+                "id": "dd86e75b-e488-40ba-a6d2-6e64a37defb7",
+                "id_especie": "3ece3f31-d8fe-4866-a616-8db0f5949676",
+                "nome_especie": "le\u00e3o",
+                "apelido": "simba",
+                "idade": 10,
+                "sexo": "masculino",
+                "saciado": false,
+                "tratado": false,
+                "banho_de_sol_tomado": false
+        },
+        {
+                "id": "ac8b7d39-b808-42c7-a172-b8fdf8c92549",
+                "id_especie": "db816f15-f9d6-4d68-b286-b4d2f394c79f",
+                "nome_especie": "macaco",
+                "apelido": "",
+                "idade": 3,
+                "sexo": "feminino",
+                "saciado": false,
+                "tratado": false,
+                "banho_de_sol_tomado": false
+        }
+]

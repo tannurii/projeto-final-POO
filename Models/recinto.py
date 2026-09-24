@@ -27,16 +27,21 @@ class Recinto():
     return None, None
     
   def criar_recinto(self):
-    lista_de_recintos = carregar(local=self.local) or []
-    novo_recinto = {
-      "id": str(uuid.uuid4()),
-      "capacidade": self.capacidade_total,
-      "lotacao": 0,
-      "limpeza": False,
-      "id_animais": []
-    }
-    lista_de_recintos.append(novo_recinto)
-    salvar(dado=lista_de_recintos, local=self.local, identacao=10)
+    try:
+      lista_de_recintos = carregar(local=self.local) or []
+      novo_recinto = {
+        "id": str(uuid.uuid4()),
+        "capacidade": self.capacidade_total,
+        "lotacao": 0,
+        "limpeza": False,
+        "id_animais": []
+      }
+      lista_de_recintos.append(novo_recinto)
+      salvar(dado=lista_de_recintos, local=self.local, identacao=10)
+    except:
+      return "não foi possível criar o recinto."
+
+    return "recinto criado com sucesso!"
 
   def cadastrar_animal_no_recinto(self, animal):
     

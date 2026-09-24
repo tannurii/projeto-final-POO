@@ -1,12 +1,12 @@
 from Data.json_storage import salvar, carregar
-from tarefa import Tarefa, TipoTarefa
+from Models.tarefa import Tarefa, TipoTarefa
 
 
 class Cronograma():
   
 
   def __init__(self):
-    self.cronograma = carregar(r"Data\cronograma.json") or []
+    self.cronograma = carregar("Data/cronograma.json") or []
 
 
   def adicionar_tarefa(self, tarefa):
@@ -23,6 +23,7 @@ class Cronograma():
 
     self.cronograma.append(nova_tarefa)
     salvar(dado=self.cronograma, local=r"Data\cronograma.json", identacao=4)
+    return "Tarefa adicionada com sucesso."
 
 
   def buscar_tarefa(self, horario):
@@ -30,6 +31,9 @@ class Cronograma():
       if t["horario"] == horario:
         return Tarefa(horario=t["horario"], tipo=TipoTarefa(t["tipo"]), id_animal=t["id_animal"], id_recinto=t["id_recinto"])
 
+
+  def todas_as_tarefas(self):
+    return carregar(local="Data/cronograma.json")
 
 
     

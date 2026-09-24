@@ -4,7 +4,7 @@ class Especie():
 
   def cadastrar_especie(self, nome, tratamento, alimentacao, banho_de_sol=None):
       lista_de_especies = carregar("Data/especies.json") or []
-      especie = self.verificar_especie(nome=nome)
+      especie = self.buscar_especie(nome=nome)
 
       if especie:
         print(f"Espécie {especie['nome']} já catalogada!")
