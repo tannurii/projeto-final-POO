@@ -7,19 +7,23 @@ from Models.especies import *
 
 
 class Tratador():
-  def __init__(self, nome):
+  def __init__(self):
     self.cronograma = Cronograma()
-
+    self.tarefas_concluidas = []
 
   def tratar_animal(self, id_animal):
     animal, service = Animal.buscar_animal_por_id(id_animal)
-    
+    id_especie = animal["id_especie"]
+    lista_de_especies = carregar("Data/especies.json")
+    for especie in lista_de_especies:
+      if id_especie == especie["id"]:
+        tratamento = especie["tratamento"]
     if not animal:
       return "Animal não encontrado."
 
     animal["tratado"] = True
     service.atualizar_animal(animal)
-    return "Tratamento executado com sucesso."
+    return f"{animal["nome_especie"]} passou pelo tratamento: {tratamento}"
 
 
   def alimentar_animal(self, id_animal):
@@ -29,7 +33,7 @@ class Tratador():
     
     animal["saciado"] = True
     service.atualizar_animal(animal)
-    return "Animal alimentado com sucesso."
+    return f"{animal["nome_especie"]} alimentado com sucesso!"
 
   def limpar_recinto(self, id_recinto):
     recinto, service = Recinto.buscar_recinto_por_id(id_recinto=id_recinto)
@@ -38,7 +42,7 @@ class Tratador():
 
     recinto["limpeza"] = True
     service.atualizar_recinto(recinto)
-    return "Limpeza realizada com sucesso."
+    return f"Limpeza do recinto realizada com sucesso!"
 
   def banho_de_sol(self, id_animal):
     animal, service = Animal.buscar_animal_por_id(id_animal=id_animal)
@@ -51,7 +55,7 @@ class Tratador():
     if especie["banho_de_sol"]:
       animal["banho_de_sol_tomado"] = True
       service.atualizar_animal(animal)
-      return "Banho de sol realizado."
+      return f"O animal {animal["nome_especie"]} tomou banho de sol!"
 
     return "Esta espécie não necessita de banho de sol."
 
@@ -59,22 +63,27 @@ class Tratador():
     match tarefa.tipo:
           
           case TipoTarefa.TRATAR:
+            
             return self.tratar_animal(tarefa.id_animal)
+            
             
     
           
           case TipoTarefa.ALIMENTAR:
+            
             return self.alimentar_animal(tarefa.id_animal)
             
     
           case TipoTarefa.LIMPAR:
+            
             return self.limpar_recinto(tarefa.id_recinto)
             
     
     
           case TipoTarefa.BANHO:
+            
             return self.banho_de_sol(tarefa.id_animal)
-          
+            
 
           case _:
             return "Tarefa Inválida"

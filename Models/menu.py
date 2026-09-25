@@ -1,11 +1,13 @@
 def mostrar_menu():
+  print()
   print("1 - Cadastrar Espécie\n" \
   "2 - Cadastrar animal\n" \
   "3 - Criar recinto\n" \
   "4 - Alocar animal\n" \
   "5 - Criar tarefa\n" \
-  "6 - Executar tarefa\n" \
-  "7 - Consultar lista de tarefas\n" \
+  "6 - Consultar lista de tarefas\n" \
+  "7 - Mostrar todos os animais\n" \
+  "8 - Iniciar simulação do dia\n" \
   "0 - Sair")
   print()
 
@@ -27,11 +29,13 @@ def listar_todas_as_tarefas():
   from Models.cronograma import Cronograma
   cronograma = Cronograma()
   lista_de_tarefas = cronograma.todas_as_tarefas()
-  if not lista_de_tarefas:
+  if len(lista_de_tarefas) == 0:
     return "Não há tarefas agendadas."
+  lista_ordenada = sorted(lista_de_tarefas, key=lambda tarefa: tarefa["horario"])
+  
   print("TAREFAS CADASTRADAS")
-  for tarefa in lista_de_tarefas:
-    print(
-    f"{tarefa['horario']} | "
-    f"{tarefa['tipo']}"
-    )
+  for tarefa in lista_ordenada:
+      print(
+      f"{tarefa['horario']} | "
+      f"{tarefa['tipo']}"
+      )

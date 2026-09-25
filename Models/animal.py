@@ -86,9 +86,6 @@ class Aves(Animal):
 class Mamiferos(Animal):
     arquivo = "Data/animais/mamiferos.json"
 class Peixes(Animal):
-    arquivo = "Data/recintos/recinto_peixes.json"
+    arquivo = "Data/animais/peixes.json"
 class Repteis(Animal):
-    arquivo = "Data/recintos/recinto_repteis.json"
-    
-            
-
+    arquivo = "Data/animais/repteis.json"

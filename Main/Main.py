@@ -15,6 +15,7 @@ while True:
   mostrar_menu()
   try:
     operador = int(input("Escolha uma opção: "))
+    os.system("cls")
 
   except ValueError:
     print("Valor inválido. Digite apenas números!")
@@ -39,10 +40,13 @@ while True:
         criar_tarefa()
 
       case 6:
-        pass
+        consultar_tarefas()
 
       case 7:
-        consultar_tarefas()
+        listar_todos_os_animais()
+
+      case 8:
+        iniciar_simulacao()
 
       case 0:
         print("Finalizando o programa")

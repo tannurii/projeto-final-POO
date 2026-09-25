@@ -1,11 +1,12 @@
 from Models.especies import *
 from Models.animal import *
 from Models.recinto import *
-from Models.tarefa import Tarefa, TipoTarefa
+from Models.tarefa import *
 from Models.cronograma import *
 from Models.tratador import *
-from datetime import datetime
 from Models.menu import *
+from Models.relogio import Relogio
+from datetime import datetime
 
 def cadastrar_especie():
   especie = Especie()
@@ -100,7 +101,7 @@ def alocar_animal():
     case Repteis():
       recinto = RecintoRepteis()
 
-  recinto.cadastrar_animal_no_recinto(animal=animal)
+  print(recinto.cadastrar_animal_no_recinto(animal=animal))
 
 
 def criar_tarefa():
@@ -138,9 +139,9 @@ def criar_tarefa():
 
   id_referencia = str(input("Digite o id do animal/recinto: ").strip().lower())
   if tipo == TipoTarefa.LIMPAR:
-     tarefa = Tarefa(horario=horario, tipo=tipo, id_animal=None, id_recinto=id_referencia)
+     tarefa = Tarefa(horario=horario, tipo=tipo, id_animal=None, id_recinto=id_referencia, executada=False)
   else:
-     tarefa = Tarefa(horario=horario, tipo=tipo, id_animal=id_referencia, id_recinto=None)
+     tarefa = Tarefa(horario=horario, tipo=tipo, id_animal=id_referencia, id_recinto=None, executada=False)
 
   cronograma = Cronograma()
   print(cronograma.adicionar_tarefa(tarefa=tarefa))
@@ -152,13 +153,73 @@ def executar_tarefa(horario):
   if not tarefa:
      return "Tarefa não encontrada."
   print(tratador.executar_tarefa(tarefa=tarefa))
-
-
-def consultar_tarefas():
-   listar_todas_as_tarefas()
-   return
-
+  
+  
 
   
 
+
+def consultar_tarefas():
+   print(listar_todas_as_tarefas())
+   
+
+
+def listar_todos_os_animais():
+  anfibios = carregar("Data/animais/anfibios.json")
+  aves = carregar("Data/animais/aves.json")
+  mamiferos = carregar("Data/animais/mamiferos.json")
+  peixes = carregar("Data/animais/peixes.json")
+  repteis = carregar("Data/animais/repteis.json")
+
+  print()
+  print("ANFÍBIOS")
+  print()
+  for animal in anfibios:
+      if len(anfibios) == 0:
+        print("Sem animais cadastrados.")
+      else:
+        
+        print(f"{animal["nome_especie"]} - {animal["apelido"] if animal["apelido"] else "Sem apelido"} - {animal["id"]}")
+  print()
+  print("AVES")
+  print()
+  for animal in aves:
+      if len(aves) == 0:
+        print("Sem animais cadastrados.")
+      else:
+        print(f"{animal["nome_especie"]} - {animal["apelido"] if animal["apelido"] else "Sem apelido"} - {animal["id"]}")
+  print()
+  print("MAMIFEROS")
+  print()
+  for animal in mamiferos:
+      if len(mamiferos) == 0:
+        print("Sem animais cadastrados.")
+      else:
+        print(f"{animal["nome_especie"]} - {animal["apelido"] if animal["apelido"] else "Sem apelido"} - {animal["id"]}")
+  print()
+  print("PEIXES")
+  print()
+  for animal in peixes:
+      if len(peixes) == 0:
+        print("Sem animais cadastrados.")
+      else:
+        print(f"{animal["nome_especie"]} - {animal["apelido"] if animal["apelido"] else "Sem apelido"} - {animal["id"]}")
+  print()
+  print("REPTEIS")
+  print()
+  for animal in repteis:
+     if len(repteis) == 0:
+        print("Sem animais cadastrados.")
+     else:
+      print(f"{animal["nome_especie"]} - {animal["apelido"] if animal["apelido"] else "Sem apelido"} - {animal["id"]}")
+
+  
+def iniciar_simulacao():
+   cronograma = Cronograma()
+   tarefas = cronograma.todas_as_tarefas()
+   if len(tarefas) == 0:
+      print("Não há tarefas no conograma de hoje! Atribua tarefas para o tratador...")
+      return
+   relogio = Relogio()
+   relogio.loop_diario()
     

@@ -47,6 +47,8 @@ class Recinto():
     
     print("Procurando vaga nos recintos...")
     lista_de_recintos = carregar(local=self.local) or []
+    if len(lista_de_recintos) == 0:
+      return "Primeiro crie um recinto da espécie do animal que deseja alocar!"
     
     for recinto in lista_de_recintos:
       if animal["id"] in recinto["id_animais"]:
@@ -59,7 +61,7 @@ class Recinto():
           salvar(dado=lista_de_recintos, local=self.local, identacao=10)
           return "Animal cadastrado com sucesso."
 
-    return "Nenhum recinto disponível"
+    return "Nenhum recinto disponível."
 
 
 
